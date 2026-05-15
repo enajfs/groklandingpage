@@ -3,132 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova • AI Productivity</title>
+    <title>HeadStart — Start your day with clarity</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=DM+Sans:wght@400;500;600&amp;display=swap">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=DM+Sans:wght@400;500;600&amp;display=swap');
         
         :root {
-            --primary: 59 130 246;
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --text: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --accent: #c9a66b;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
         }
         
         body {
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'DM Sans', system_ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
         }
         
         .heading-font {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Playfair Display', serif;
         }
-
+        
         .hero-bg {
-            background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
+            background: radial-gradient(at center bottom, rgba(201, 166, 107, 0.08) 0%, transparent 50%);
         }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
+        
+        .section-header {
+            font-size: 2.75rem;
+            line-height: 1.1;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .feature-card {
+            background-color: var(--surface);
+        }
+        
+        .mockup {
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            border: 12px solid #1f1f1f;
+            border-radius: 2.5rem;
+            overflow: hidden;
+            background: #111;
+        }
+        
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), #e2b16a);
+            z-index: 50;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .cta-button {
+            background: linear-gradient(90deg, #c9a66b, #e2c38a);
+            color: #111;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgb(201 166 107 / 0.3), 0 8px 10px -6px rgb(201 166 107 / 0.3);
         }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-200">
+<body class="overflow-x-hidden">
+    <!-- Progress bar -->
+    <div id="progress-bar" class="scroll-progress w-0"></div>
 
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-lg">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl">N</div>
-                <span class="text-2xl font-semibold tracking-tight heading-font">Nova</span>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-7 h-7 bg-[#c9a66b] rounded-2xl flex items-center justify-center text-[#111] text-xl font-bold leading-none pt-0.5">H</div>
+                <span class="heading-font text-3xl tracking-tighter font-semibold">HeadStart</span>
             </div>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#" class="hover:text-white transition-colors">Features</a>
-                <a href="#" class="hover:text-white transition-colors">Solutions</a>
-                <a href="#" class="hover:text-white transition-colors">Pricing</a>
-                <a href="#" class="hover:text-white transition-colors">Blog</a>
+            <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+                <a href="#problem" class="nav-link text-white/80 hover:text-white">The Problem</a>
+                <a href="#how" class="nav-link text-white/80 hover:text-white">How it works</a>
+                <a href="#faq" class="nav-link text-white/80 hover:text-white">FAQ</a>
             </div>
-
-            <div class="flex items-center gap-4">
-                <button onclick="document.getElementById('demo').scrollIntoView({ behavior: 'smooth' })"
-                        class="px-5 py-2.5 text-sm font-medium hover:bg-zinc-900 transition-colors rounded-2xl">
-                    Log in
-                </button>
-                <button onclick="document.getElementById('demo').scrollIntoView({ behavior: 'smooth' })"
-                        class="px-6 py-2.5 bg-white text-zinc-900 font-semibold rounded-2xl hover:bg-zinc-100 transition-all hover:scale-105">
-                    Start Free Trial
-                </button>
-            </div>
+            
+            <button onclick="showSignupModal()" 
+                    class="px-6 py-3.5 text-sm font-semibold rounded-2xl bg-white/5 hover:bg-white/10 border border-white/20 flex items-center gap-x-2">
+                <span>Get early access</span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- HERO -->
     <section class="hero-bg min-h-screen flex items-center pt-20">
-        <div class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
-            <div class="space-y-8">
-                <div class="inline-flex items-center gap-2 bg-white/10 text-white text-sm px-4 py-2 rounded-full border border-white/20">
-                    <span class="relative flex h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                    </span>
-                    Now in Public Beta
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-16 items-center">
+            <!-- Left content -->
+            <div class="md:col-span-7 pt-12 md:pt-0">
+                <div class="inline-flex items-center gap-x-2 bg-white/5 text-white/70 text-xs tracking-[0.125em] font-medium px-5 py-2.5 rounded-3xl mb-8 border border-white/10">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    NOW ACCEPTING EARLY ACCESS
                 </div>
                 
-                <h1 class="text-6xl md:text-7xl font-bold leading-tight heading-font tracking-tighter">
-                    Work at the<br>speed of thought
+                <h1 class="heading-font text-7xl md:text-[92px] leading-[1.05] tracking-tighter font-semibold max-w-[22ch]">
+                    Your inbox,<br>finally tamed.
                 </h1>
                 
-                <p class="text-xl text-zinc-400 max-w-lg">
-                    The AI-powered workspace that turns your ideas into reality faster than ever before.
+                <p class="mt-8 text-2xl text-white/70 max-w-[28ch] leading-tight">
+                    A 06:55 briefing that surfaces only what matters and ensures you never forget to follow up.
                 </p>
                 
-                <div class="flex flex-wrap gap-4">
-                    <button onclick="document.getElementById('demo').scrollIntoView({ behavior: 'smooth' })"
-                            class="px-8 py-4 bg-blue-600 hover:bg-blue-500 transition-all rounded-3xl font-semibold text-lg flex items-center gap-3 group">
-                        Get started free
-                        <i class="fa-solid fa-arrow-right group-active:translate-x-1 transition"></i>
+                <div class="mt-12 flex flex-wrap gap-4">
+                    <button onclick="showSignupModal()" 
+                            class="cta-button px-10 py-6 rounded-3xl text-xl font-semibold flex items-center gap-x-3 group">
+                        Join the waitlist
+                        <span class="inline-block group-active:rotate-45 transition-transform">→</span>
                     </button>
                     
-                    <button class="px-8 py-4 border border-zinc-700 hover:border-zinc-400 transition-all rounded-3xl font-medium flex items-center gap-3">
-                        <i class="fa-solid fa-play"></i>
-                        Watch 1:42 demo
+                    <button onclick="document.getElementById('how').scrollIntoView({ behavior: 'smooth' })" 
+                            class="px-8 py-6 rounded-3xl border border-white/30 hover:border-white/60 text-lg font-medium">
+                        See how it works
                     </button>
                 </div>
                 
-                <div class="flex items-center gap-8 text-sm pt-6">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-check text-emerald-400"></i>
-                        <span>No credit card required</span>
+                <div class="mt-16 flex items-center gap-x-8 text-sm">
+                    <div class="flex -space-x-4">
+                        <div class="w-8 h-8 bg-zinc-700 border-2 border-[#0a0a0a] rounded-2xl flex items-center justify-center text-xs">📧</div>
+                        <div class="w-8 h-8 bg-zinc-700 border-2 border-[#0a0a0a] rounded-2xl flex items-center justify-center text-xs">📅</div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-check text-emerald-400"></i>
-                        <span>14 days free</span>
+                    <div class="text-white/60">
+                        Works with Gmail &amp; Outlook<br>
+                        <span class="text-emerald-400 text-xs">• No inbox changes • Your data stays yours</span>
                     </div>
-                </div>
-
-                <!-- Trust logos -->
-                <div class="pt-8 border-t border-zinc-800 flex items-center gap-8 opacity-70">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" class="h-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/BBC.svg" alt="BBC" class="h-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png" alt="Google" class="h-6">
                 </div>
             </div>
-
-            <!-- Hero Visual -->
-            <div class="relative">
-                <div class="bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-[3rem] p-2 shadow-2xl shadow-blue-500/30">
-                    <div class="bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-700">
-                        <img src="https://picsum.photos/id/1015/800/620" alt="Nova Dashboard" 
-                             class="w-full h-auto rounded-3xl">
+            
+            <!-- Right visual -->
+            <div class="md:col-span-5 relative">
+                <div class="mockup mx-auto max-w-xs md:max-w-md aspect-[9/19] relative">
+                    <!-- Phone screen mock -->
+                    <div class="bg-[#0f172a] h-full p-3 flex flex-col">
+                        <!-- Status bar -->
+                        <div class="flex justify-between text-[10px] text-white/60 px-3 pt-2">
+                            <div>9:41</div>
+                            <div class="flex items-center gap-x-3">
+                                <span>5G</span>
+                                <span>92%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Briefing header -->
+                        <div class="mt-6 bg-[#1e2937] rounded-3xl p-5 text-sm">
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="font-semibold text-[#c9a66b]">Good morning, Alex</div>
+                                <div class="text-xs px-3 py-1 bg-white/10 rounded-3xl">Today</div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <!-- Item -->
+                                <div>
+                                    <div class="flex gap-x-3">
+                                        <div class="text-2xl">📨</div>
+                                        <div class="flex-1">
+                                            <div class="font-medium">Sarah Chen • Proposal feedback</div>
+                                            <div class="text-white/60 text-xs mt-0.5">Action required • Sent 7:12am</div>
+                                            <div class="mt-3 text-xs text-emerald-400 font-medium">✓ Responded</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Item 2 -->
+                                <div>
+                                    <div class="flex gap-x-3">
+                                        <div class="text-2xl">📅</div>
+                                        <div class="flex-1">
+                                            <div class="font-medium">Q3 planning sync</div>
+                                            <div class="text-white/60 text-xs mt-0.5">Meeting • Tomorrow 11am</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-auto text-center text-[10px] text-white/40 py-6">
+                            4 items need attention • 2 resolved
+                        </div>
                     </div>
+                    
+                    <!-- Shine effect -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none rounded-[2.25rem]"></div>
                 </div>
                 
-                <!-- Floating badges -->
-                <div class="absolute -top-6 -right-6 glass border border-white/20 rounded-2xl px-6 py-4 shadow-xl">
-                    <div class="flex items-center gap-3">
-                        <div class="text-3xl">🚀</div>
-                        <div>
-                            <div class="font-semibold">3.4x faster</div>
-                            <div class="text-sm text-zinc-400">Average productivity boost</div>
+                <!-- Floating badge -->
+                <div class="absolute -bottom-4 -left-6 bg-[#111] border border-white/10 rounded-3xl px-6 py-4 shadow-2xl text-sm max-w-[180px]">
+                    <div class="flex items-center gap-x-2">
+                        <span class="text-emerald-400">●</span>
+                        <span class="font-medium">06:55 notification sent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-12 left-1/2 hidden md:flex flex-col items-center gap-y-2">
+            <div class="text-xs tracking-widest text-white/40">SCROLL TO EXPLORE</div>
+            <div class="w-px h-12 bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section id="problem" class="py-28 border-t border-white/5">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid md:grid-cols-12 gap-x-20 items-center">
+                <div class="md:col-span-5">
+                    <span class="inline-block uppercase text-xs tracking-[1.5px] text-amber-300 mb-3">THE DAILY COST</span>
+                    <h2 class="heading-font section-header">Your inbox is quietly stealing your day.</h2>
+                </div>
+                
+                <div class="md:col-span-7 mt-10 md:mt-0">
+                    <div class="space-y-16">
+                        <div class="grid md:grid-cols-2 gap-16">
+                            <!-- Pain 1 -->
+                            <div class="fade-in">
+                                <div class="text-7xl mb-6 text-white/20">01</div>
+                                <div class="text-3xl heading-font leading-tight">The stolen first hour</div>
+                                <p class="mt-6 text-lg text-white/70">
+                                    Every morning begins with 30–60 minutes of inbox triage before real work can start. 
+                                    That’s valuable focus time lost to noise.
+                                </p>
+                            </div>
+                            
+                            <!-- Pain 2 -->
+                            <div class="fade-in">
+                                <div class="text-7xl mb-6 text-white/20">02</div>
+                                <div class="text-3xl heading-font leading-tight">Forgotten follow-ups</div>
+                                <p class="mt-6 text-lg text-white/70">
+                                    You read an important email, intend to reply later, and it slips through the cracks. 
+                                    Relationships and opportunities suffer.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="border-l border-white/10 pl-8 max-w-md">
+                            <p class="italic text-white/60">
+                                “By Thursday I’ve usually dropped at least three things I meant to follow up on.”
+                            </p>
+                            <p class="text-xs text-white/40 mt-6">— Typical SMB founder</p>
                         </div>
                     </div>
                 </div>
@@ -136,126 +293,425 @@
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="py-24 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold heading-font mb-4">Everything you need in one place</h2>
-                <p class="text-zinc-400 text-lg">Powerful tools. Beautifully designed.</p>
+    <!-- WHAT HEADSTART DOES -->
+    <section id="how" class="py-28 bg-[#111111]">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="max-w-2xl mx-auto text-center mb-20">
+                <span class="px-5 py-2 rounded-full bg-white/5 text-xs font-medium tracking-wider">SIMPLE BY DESIGN</span>
+                <h2 class="heading-font section-header mt-6">One daily briefing.<br>Zero forgotten replies.</h2>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-zinc-800/50 border border-zinc-700 rounded-3xl p-8 hover:border-blue-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition">✨</div>
-                    <h3 class="text-2xl font-semibold mb-3">AI Assistant</h3>
-                    <p class="text-zinc-400">Your personal AI that understands context and helps you write, brainstorm, and analyze instantly.</p>
-                    <ul class="mt-6 space-y-3 text-sm">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Smart autocomplete</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Document analysis</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Meeting summaries</li>
-                    </ul>
+                <!-- Card 1 -->
+                <div class="feature-card p-10 rounded-3xl fade-in group">
+                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110">📬</div>
+                    <h3 class="text-2xl font-semibold mb-3">Cuts through the noise</h3>
+                    <p class="text-white/70">
+                        Filters out newsletters, promotions, and automated messages. Only shows emails that require your attention.
+                    </p>
                 </div>
                 
-                <!-- Feature 2 -->
-                <div class="bg-zinc-800/50 border border-zinc-700 rounded-3xl p-8 hover:border-blue-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition">📊</div>
-                    <h3 class="text-2xl font-semibold mb-3">Project Hub</h3>
-                    <p class="text-zinc-400">Centralized workspace for tasks, notes, files, and team collaboration — all in real-time.</p>
-                    <ul class="mt-6 space-y-3 text-sm">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Kanban boards</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Version history</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Team chat</li>
-                    </ul>
+                <!-- Card 2 -->
+                <div class="feature-card p-10 rounded-3xl fade-in group">
+                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110">✅</div>
+                    <h3 class="text-2xl font-semibold mb-3">Tracks follow-through</h3>
+                    <p class="text-white/70">
+                        Automatically checks your Sent and Drafts folders. Clearly shows what’s pending, started, or resolved.
+                    </p>
                 </div>
                 
-                <!-- Feature 3 -->
-                <div class="bg-zinc-800/50 border border-zinc-700 rounded-3xl p-8 hover:border-blue-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition">⚡</div>
-                    <h3 class="text-2xl font-semibold mb-3">Instant Insights</h3>
-                    <p class="text-zinc-400">Turn data into decisions with AI-powered analytics and beautiful visualizations.</p>
-                    <ul class="mt-6 space-y-3 text-sm">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Auto reports</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Predictive trends</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> One-click exports</li>
-                    </ul>
+                <!-- Card 3 -->
+                <div class="feature-card p-10 rounded-3xl fade-in group">
+                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110">🌅</div>
+                    <h3 class="text-2xl font-semibold mb-3">Self-healing system</h3>
+                    <p class="text-white/70">
+                        Unresolved items automatically roll into tomorrow’s briefing. Works even when life gets busy.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-20 bg-[#1a1a1a] border border-white/10 rounded-3xl p-12 md:p-16 max-w-3xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div>
+                        <div class="uppercase text-xs tracking-widest mb-2">Every morning at 06:55</div>
+                        <div class="text-5xl heading-font leading-none">A single push notification</div>
+                        <p class="mt-8 text-white/70 max-w-xs">
+                            One tap opens your personalized briefing. Available on-demand anytime after.
+                        </p>
+                    </div>
+                    <div class="flex-1 flex justify-center">
+                        <div class="text-center bg-black/40 px-10 py-8 rounded-3xl">
+                            <div class="text-8xl mb-3">📱</div>
+                            <div class="text-emerald-400 font-medium">06:55</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Banner -->
-    <section id="demo" class="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div class="max-w-4xl mx-auto text-center px-6">
-            <h2 class="text-4xl md:text-5xl font-bold heading-font mb-6">
-                Ready to transform how you work?
-            </h2>
-            <p class="text-xl mb-10 text-blue-100">
-                Join 15,000+ teams already using Nova to get more done.
+    <!-- TESTIMONIAL STYLE TRUST BAR -->
+    <div class="py-12 border-t border-b border-white/5 bg-black/30">
+        <div class="max-w-screen-2xl mx-auto px-8 flex flex-wrap justify-center items-center gap-x-16 gap-y-8 opacity-75 text-sm">
+            <div class="flex items-center gap-x-6">
+                <span class="font-mono text-3xl text-white/30">G</span>
+                <span class="font-medium">Gmail</span>
+            </div>
+            <div class="flex items-center gap-x-6">
+                <span class="font-mono text-3xl text-white/30">O</span>
+                <span class="font-medium">Outlook</span>
+            </div>
+            <div>Microsoft 365</div>
+            <div>Google Workspace</div>
+        </div>
+    </div>
+
+    <!-- CTA SECTION -->
+    <section class="py-32 bg-gradient-to-b from-transparent via-[#c9a66b]/5 to-transparent">
+        <div class="max-w-2xl mx-auto text-center px-6">
+            <h2 class="heading-font text-6xl leading-none tracking-tighter">Ready to stop losing hours to email?</h2>
+            <p class="mt-8 text-xl text-white/70">
+                Be among the first to try HeadStart. Limited early access spots available.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="px-10 py-5 bg-white text-zinc-900 rounded-3xl font-semibold text-lg hover:scale-105 transition-all">
-                    Start your free trial
-                </button>
-                <button class="px-10 py-5 border-2 border-white/70 hover:border-white rounded-3xl font-medium text-lg transition-all">
-                    Book a demo
-                </button>
-            </div>
-            <p class="text-sm text-blue-100/70 mt-6">No credit card • Cancel anytime</p>
+            
+            <button onclick="showSignupModal()" 
+                    class="mt-12 cta-button px-16 py-8 text-2xl rounded-3xl inline-flex items-center gap-x-4">
+                Get Early Access — It's Free
+            </button>
+            
+            <p class="text-xs text-white/40 mt-8">Takes 15 seconds • No credit card required</p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-black py-20">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-12">
-            <div class="md:col-span-2">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-9 h-9 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-3xl">N</div>
-                    <span class="text-3xl font-semibold tracking-tight heading-font">Nova</span>
+    <!-- FAQ -->
+    <section id="faq" class="py-28">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid md:grid-cols-12 gap-20">
+                <div class="md:col-span-5">
+                    <span class="text-amber-300 uppercase text-sm tracking-widest">Common questions</span>
+                    <h2 class="heading-font text-6xl mt-3 leading-none">Everything you need to know.</h2>
                 </div>
-                <p class="text-zinc-400 max-w-xs">
-                    The modern workspace for ambitious teams.
-                </p>
-            </div>
-            
-            <div>
-                <h4 class="font-semibold mb-4">Product</h4>
-                <ul class="space-y-3 text-sm text-zinc-400">
-                    <li><a href="#" class="hover:text-white">Features</a></li>
-                    <li><a href="#" class="hover:text-white">Templates</a></li>
-                    <li><a href="#" class="hover:text-white">Integrations</a></li>
-                    <li><a href="#" class="hover:text-white">Changelog</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="font-semibold mb-4">Company</h4>
-                <ul class="space-y-3 text-sm text-zinc-400">
-                    <li><a href="#" class="hover:text-white">About</a></li>
-                    <li><a href="#" class="hover:text-white">Blog</a></li>
-                    <li><a href="#" class="hover:text-white">Careers</a></li>
-                    <li><a href="#" class="hover:text-white">Contact</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="font-semibold mb-4">Legal</h4>
-                <ul class="space-y-3 text-sm text-zinc-400">
-                    <li><a href="#" class="hover:text-white">Privacy</a></li>
-                    <li><a href="#" class="hover:text-white">Terms</a></li>
-                    <li><a href="#" class="hover:text-white">Security</a></li>
-                </ul>
+                
+                <div class="md:col-span-7 space-y-10">
+                    <div class="faq-item border-b border-white/10 pb-8">
+                        <button onclick="toggleFaq(this)" class="flex justify-between items-center w-full text-left group">
+                            <span class="text-xl font-medium">Will HeadStart read all my emails?</span>
+                            <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
+                        </button>
+                        <div class="faq-answer hidden mt-6 text-white/70 text-[17px]">
+                            HeadStart only analyzes your inbox to surface action items and follow-ups. It never stores full email content beyond what's necessary for classification and status tracking.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item border-b border-white/10 pb-8">
+                        <button onclick="toggleFaq(this)" class="flex justify-between items-center w-full text-left group">
+                            <span class="text-xl font-medium">Does it change or organize my inbox?</span>
+                            <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
+                        </button>
+                        <div class="faq-answer hidden mt-6 text-white/70 text-[17px]">
+                            No. HeadStart is a read-only view. Your actual inbox remains completely untouched.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item border-b border-white/10 pb-8">
+                        <button onclick="toggleFaq(this)" class="flex justify-between items-center w-full text-left group">
+                            <span class="text-xl font-medium">What happens if I miss the morning notification?</span>
+                            <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
+                        </button>
+                        <div class="faq-answer hidden mt-6 text-white/70 text-[17px]">
+                            Yesterday’s unresolved items will automatically appear in tomorrow’s briefing. The system is designed to be forgiving.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item border-b border-white/10 pb-8">
+                        <button onclick="toggleFaq(this)" class="flex justify-between items-center w-full text-left group">
+                            <span class="text-xl font-medium">Is my data private and secure?</span>
+                            <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
+                        </button>
+                        <div class="faq-answer hidden mt-6 text-white/70 text-[17px]">
+                            Yes. We use secure OAuth connections with your email provider and are built with the future ability to run on your own infrastructure.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item border-b border-white/10 pb-8">
+                        <button onclick="toggleFaq(this)" class="flex justify-between items-center w-full text-left group">
+                            <span class="text-xl font-medium">Can I use it throughout the day?</span>
+                            <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
+                        </button>
+                        <div class="faq-answer hidden mt-6 text-white/70 text-[17px]">
+                            Absolutely. Open the briefing page or install the PWA anytime for an up-to-date view of what still needs your attention.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-zinc-900 text-center text-zinc-500 text-sm">
-            © 2026 Nova Inc. All rights reserved.
+    </section>
+
+    <!-- ABOUT -->
+    <section class="py-28 bg-[#111]">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="max-w-xl">
+                <div class="uppercase text-xs tracking-widest mb-6 text-amber-300">THE STORY BEHIND HEADSTART</div>
+                <h2 class="heading-font text-6xl leading-tight">Built for busy SMB operators who are tired of email chaos.</h2>
+                <div class="prose prose-invert mt-10 text-lg">
+                    <p>HeadStart was created by the team at SMB-Integrator after watching founders and operators lose hours every week to fragmented inboxes and dropped replies.</p>
+                    <p>We believe your morning should begin with clarity, not overwhelm. And that follow-through shouldn’t depend on perfect memory.</p>
+                </div>
+                <div class="mt-12 flex items-center gap-x-4">
+                    <div class="w-12 h-px bg-white/30"></div>
+                    <div class="text-sm uppercase tracking-widest">Coming soon to more channels</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="py-24 border-t border-white/10">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+            <p class="text-3xl font-light">Stop starting your day in catch-up mode.</p>
+            <button onclick="showSignupModal()" 
+                    class="mt-10 cta-button w-full md:w-auto px-20 py-8 text-2xl rounded-3xl">
+                Claim your early access
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-20 border-t border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-y-12">
+                <div>
+                    <div class="flex items-center gap-x-3">
+                        <div class="w-7 h-7 bg-[#c9a66b] rounded-2xl flex items-center justify-center text-[#111] text-2xl font-bold leading-none">H</div>
+                        <span class="heading-font text-4xl tracking-tighter">HeadStart</span>
+                    </div>
+                    <p class="text-white/40 mt-6 text-sm max-w-xs">
+                        Morning clarity for SMB teams.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-x-16 text-sm">
+                    <div>
+                        <div class="font-medium mb-6 text-white/80">Product</div>
+                        <div class="space-y-4 text-white/50">
+                            <div>How it works</div>
+                            <div>Early access</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-medium mb-6 text-white/80">Company</div>
+                        <div class="space-y-4 text-white/50">
+                            <div>About</div>
+                            <div>Contact</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-medium mb-6 text-white/80">Legal</div>
+                        <div class="space-y-4 text-white/50">
+                            <div>Privacy</div>
+                            <div>Terms</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-20 pt-8 border-t border-white/10 text-xs text-white/30 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>© 2026 HeadStart. All rights reserved.</div>
+                <div class="flex gap-x-6">
+                    <a href="#" class="hover:text-white">Twitter</a>
+                    <a href="#" class="hover:text-white">LinkedIn</a>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- SIGNUP MODAL -->
+    <div id="signup-modal" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-[9999]">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="bg-[#111] max-w-md w-full mx-4 rounded-3xl p-10 relative">
+            
+            <button onclick="hideSignupModal()" 
+                    class="absolute top-6 right-6 text-white/40 hover:text-white text-3xl leading-none">×</button>
+            
+            <div class="text-center">
+                <div class="mx-auto w-16 h-16 bg-gradient-to-br from-amber-300 to-yellow-600 rounded-3xl flex items-center justify-center text-4xl mb-6">🌅</div>
+                <h3 class="heading-font text-4xl">Join the early access list</h3>
+                <p class="mt-3 text-white/70">Be the first to experience calmer mornings.</p>
+            </div>
+            
+            <form id="signup-form" onsubmit="handleSubmit(event)" class="mt-10 space-y-6">
+                <div>
+                    <label class="block text-xs uppercase tracking-widest mb-2 text-white/60">Work email</label>
+                    <input id="email" type="email" required 
+                           class="w-full bg-white/5 border border-white/20 focus:border-[#c9a66b] rounded-2xl px-6 py-6 outline-none text-lg"
+                           placeholder="you@company.com">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest mb-2 text-white/60">First name</label>
+                        <input id="first-name" type="text" 
+                               class="w-full bg-white/5 border border-white/20 focus:border-[#c9a66b] rounded-2xl px-6 py-6 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest mb-2 text-white/60">Company</label>
+                        <input id="company" type="text" 
+                               class="w-full bg-white/5 border border-white/20 focus:border-[#c9a66b] rounded-2xl px-6 py-6 outline-none">
+                    </div>
+                </div>
+                
+                <div class="pt-4">
+                    <button type="submit"
+                            class="w-full cta-button py-7 text-xl rounded-3xl">
+                        Yes, I'm in
+                    </button>
+                </div>
+                
+                <p class="text-center text-xs text-white/40">
+                    We respect your inbox. You can unsubscribe anytime.
+                </p>
+            </form>
+            
+            <!-- Success state -->
+            <div id="success-state" class="hidden text-center py-8">
+                <div class="text-6xl mb-6">🎉</div>
+                <h3 class="heading-font text-3xl">You're on the list!</h3>
+                <p class="mt-4 text-white/70">We'll notify you as soon as HeadStart is ready for you.</p>
+                <button onclick="hideSignupModal()" 
+                        class="mt-8 text-sm underline">Close</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Tailwind script already included via CDN
-        console.log('%cNova Landing Page Loaded Successfully ✨', 'color: #60a5fa; font-size: 14px;');
+        // Tailwind script already included via CDN for rapid prototyping, but kept pure where needed
+        
+        // Progress bar
+        function setupProgressBar() {
+            const progressBar = document.getElementById('progress-bar');
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = scrollTop / docHeight * 100;
+                progressBar.style.width = `${scrollPercent}%`;
+            });
+        }
+        
+        // Fade in animations
+        function setupAnimations() {
+            const faders = document.querySelectorAll('.fade-in');
+            
+            const appearOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            
+            const appearOnScroll = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, appearOptions);
+            
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        }
+        
+        // FAQ toggles
+        function toggleFaq(el) {
+            const answer = el.parentElement.querySelector('.faq-answer');
+            const isHidden = answer.classList.contains('hidden');
+            
+            // Close all others
+            document.querySelectorAll('.faq-answer').forEach(ans => {
+                if (ans !== answer) ans.classList.add('hidden');
+            });
+            
+            if (isHidden) {
+                answer.classList.remove('hidden');
+            } else {
+                answer.classList.add('hidden');
+            }
+        }
+        
+        // Modal controls
+        let modalOpen = false;
+        
+        function showSignupModal() {
+            document.getElementById('signup-modal').classList.remove('hidden');
+            document.getElementById('signup-modal').classList.add('flex');
+            document.getElementById('email').focus();
+            modalOpen = true;
+        }
+        
+        function hideSignupModal() {
+            const modal = document.getElementById('signup-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            
+            // Reset form
+            setTimeout(() => {
+                document.getElementById('signup-form').classList.remove('hidden');
+                document.getElementById('success-state').classList.add('hidden');
+            }, 300);
+            
+            modalOpen = false;
+        }
+        
+        function handleSubmit(e) {
+            e.preventDefault();
+            
+            const form = document.getElementById('signup-form');
+            const success = document.getElementById('success-state');
+            
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+            
+            // Fake submission - in real app would POST to backend
+            console.log('%cEarly access signup captured!', 'color:#c9a66b; font-size:13px');
+        }
+        
+        // Keyboard escape
+        function setupKeyboard() {
+            document.addEventListener('keydown', function(e) {
+                if (e.key === "Escape" && modalOpen) {
+                    hideSignupModal();
+                }
+            });
+        }
+        
+        // Click outside modal to close
+        function setupModalClick() {
+            const modal = document.getElementById('signup-modal');
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    hideSignupModal();
+                }
+            });
+        }
+        
+        // Initialize everything
+        function initialize() {
+            setupProgressBar();
+            setupAnimations();
+            setupKeyboard();
+            setupModalClick();
+            
+            // Make first FAQ open by default
+            setTimeout(() => {
+                const firstFaqBtn = document.querySelector('.faq-item button');
+                if (firstFaqBtn) {
+                    firstFaqBtn.click();
+                }
+            }, 1200);
+            
+            console.log('%cHeadStart landing page initialized successfully ✨', 'color:#c9a66b; font-family:monospace');
+        }
+        
+        window.onload = initialize;
     </script>
 </body>
 </html>
