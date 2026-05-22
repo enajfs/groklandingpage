@@ -94,7 +94,6 @@
             box-shadow: 0 20px 25px -5px rgb(201 166 107 / 0.3), 0 8px 10px -6px rgb(201 166 107 / 0.3);
         }
 
-        /* Hero background fixed so parallax works correctly */
         #hero-bg {
             position: absolute;
             inset: 0;
@@ -136,7 +135,7 @@
         </div>
     </nav>
 
-    <!-- HERO — Netflix style: full screen photo, centered text overlay -->
+    <!-- HERO -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
 
         <!-- Background photo -->
@@ -145,17 +144,15 @@
                 src="photohere.png" 
                 alt="Business professionals at the starting line"
             >
-            <!-- Bottom-heavy dark gradient so text pops and page transitions smoothly -->
             <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.2) 30%, rgba(10,10,10,0.55) 70%, rgba(10,10,10,1) 100%);"></div>
-            <!-- Subtle center darkening so headline is always readable -->
             <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, rgba(10,10,10,0.3) 0%, transparent 70%);"></div>
         </div>
 
-        <!-- Scroll-fade overlay — fades photo to dark as user scrolls -->
+        <!-- Scroll-fade overlay -->
         <div id="hero-fade" class="absolute inset-0 z-10 pointer-events-none" style="background: #0a0a0a; opacity: 0;"></div>
 
-        <!-- Centered content — Netflix style -->
-        <div class="relative z-20 text-center px-6 max-w-4xl mx-auto">
+        <!-- Centered content — fades in after 2 seconds -->
+        <div id="hero-content" class="relative z-20 text-center px-6 max-w-4xl mx-auto" style="opacity: 0; transition: opacity 1.2s ease;">
             <div class="inline-flex items-center gap-x-2 bg-black/30 text-white/80 text-xs tracking-[0.125em] font-medium px-5 py-2.5 rounded-3xl mb-10 border border-white/20 backdrop-blur-sm">
                 <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
                 NOW ACCEPTING EARLY ACCESS
@@ -169,7 +166,6 @@
                 A 06:55 briefing that surfaces only what matters — and ensures you never forget to follow up.
             </p>
 
-            <!-- Email CTA — Netflix style -->
             <div class="mt-10 text-white/70 text-base">Ready to start your mornings differently?</div>
             <div class="mt-4 flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto">
                 <input 
@@ -391,22 +387,22 @@
         </div>
     </section>
 
-   <!-- ABOUT -->
-<section class="py-28 bg-[#111]">
-    <div class="max-w-3xl mx-auto px-8 text-center">
-        <div class="uppercase text-xs tracking-widest mb-6 text-amber-300">THE STORY BEHIND HEADSTART</div>
-        <h2 class="heading-font text-6xl leading-tight">Built for busy SMB operators who are tired of email chaos.</h2>
-        <div class="mt-10 text-lg text-white/70 space-y-4">
-            <p>HeadStart was created by the team at SMB-Integrator after watching founders and operators lose hours every week to fragmented inboxes and dropped replies.</p>
-            <p>We believe your morning should begin with clarity, not overwhelm. And that follow-through shouldn't depend on perfect memory.</p>
+    <!-- ABOUT -->
+    <section class="py-28 bg-[#111]">
+        <div class="max-w-3xl mx-auto px-8 text-center">
+            <div class="uppercase text-xs tracking-widest mb-6 text-amber-300">THE STORY BEHIND HEADSTART</div>
+            <h2 class="heading-font text-6xl leading-tight">Built for busy SMB operators who are tired of email chaos.</h2>
+            <div class="mt-10 text-lg text-white/70 space-y-4">
+                <p>HeadStart was created by the team at SMB-Integrator after watching founders and operators lose hours every week to fragmented inboxes and dropped replies.</p>
+                <p>We believe your morning should begin with clarity, not overwhelm. And that follow-through shouldn't depend on perfect memory.</p>
+            </div>
+            <div class="mt-12 flex items-center justify-center gap-x-4">
+                <div class="w-12 h-px bg-white/30"></div>
+                <div class="text-sm uppercase tracking-widest">Coming soon to more channels</div>
+                <div class="w-12 h-px bg-white/30"></div>
+            </div>
         </div>
-        <div class="mt-12 flex items-center justify-center gap-x-4">
-            <div class="w-12 h-px bg-white/30"></div>
-            <div class="text-sm uppercase tracking-widest">Coming soon to more channels</div>
-            <div class="w-12 h-px bg-white/30"></div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- FINAL CTA -->
     <section class="py-24 border-t border-white/10">
@@ -539,19 +535,24 @@
             const heroSection = document.querySelector('section');
 
             window.addEventListener('scroll', () => {
-                const scrollY   = window.scrollY;
-                const heroH     = heroSection ? heroSection.offsetHeight : window.innerHeight;
+                const scrollY = window.scrollY;
+                const heroH   = heroSection ? heroSection.offsetHeight : window.innerHeight;
 
-                // Parallax: image drifts up at 30% scroll speed
                 if (heroBgImg) {
                     heroBgImg.style.transform = `translateY(${scrollY * 0.3}px)`;
                 }
-
-                // Fade to black by 65% of hero height
                 if (heroFade) {
                     heroFade.style.opacity = Math.min(scrollY / (heroH * 0.65), 1);
                 }
             }, { passive: true });
+        }
+
+        // Fade in hero content after 2 seconds
+        function setupHeroContentFade() {
+            setTimeout(() => {
+                const heroContent = document.getElementById('hero-content');
+                if (heroContent) heroContent.style.opacity = '1';
+            }, 2000);
         }
         
         // Fade-in on scroll
@@ -578,8 +579,8 @@
         
         // FAQ
         function toggleFaq(el) {
-            const answer  = el.parentElement.querySelector('.faq-answer');
-            const hidden  = answer.classList.contains('hidden');
+            const answer = el.parentElement.querySelector('.faq-answer');
+            const hidden = answer.classList.contains('hidden');
             document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
             if (hidden) answer.classList.remove('hidden');
         }
@@ -612,7 +613,6 @@
             document.getElementById('success-state').classList.remove('hidden');
         }
 
-        // Keyboard + outside click
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOpen) hideSignupModal(); });
         document.getElementById('signup-modal').addEventListener('click', e => {
             if (e.target === document.getElementById('signup-modal')) hideSignupModal();
@@ -623,6 +623,7 @@
             setupProgressBar();
             setupHeroParallax();
             setupAnimations();
+            setupHeroContentFade();
             setTimeout(() => {
                 const first = document.querySelector('.faq-item button');
                 if (first) first.click();
