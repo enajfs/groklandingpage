@@ -81,6 +81,13 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        .faq-answer {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.35s ease;
+        }
         
         .cta-button {
             background: linear-gradient(90deg, #c9a66b, #e2c38a);
@@ -341,7 +348,7 @@
                             <span class="text-xl font-medium">Will HeadStart read all my emails?</span>
                             <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
                         </button>
-                        <div class="faq-answer hidden mt-6 text-white/70 text-[17px]">
+                        <div class="faq-answer mt-6 text-white/70 text-[17px]">
                             HeadStart only analyzes your inbox to surface action items and follow-ups. It never stores full email content beyond what's necessary for classification and status tracking.
                         </div>
                     </div>
@@ -351,7 +358,7 @@
                             <span class="text-xl font-medium">Does it change or organize my inbox?</span>
                             <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
                         </button>
-                        <div class="faq-answer hidden mt-6 text-white/70 text-[17px]">
+                       <div class="faq-answer mt-6 text-white/70 text-[17px]">
                             No. HeadStart is a read-only view. Your actual inbox remains completely untouched.
                         </div>
                     </div>
@@ -361,7 +368,7 @@
                             <span class="text-xl font-medium">What happens if I miss the morning notification?</span>
                             <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
                         </button>
-                        <div class="faq-answer hidden mt-6 text-white/70 text-[17px]">
+                       <div class="faq-answer mt-6 text-white/70 text-[17px]">
                             Yesterday's unresolved items will automatically appear in tomorrow's briefing. The system is designed to be forgiving.
                         </div>
                     </div>
@@ -371,7 +378,7 @@
                             <span class="text-xl font-medium">Is my data private and secure?</span>
                             <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
                         </button>
-                        <div class="faq-answer hidden mt-6 text-white/70 text-[17px]">
+                        <div class="faq-answer mt-6 text-white/70 text-[17px]">
                             Yes. We use secure OAuth connections with your email provider and are built with the future ability to run on your own infrastructure.
                         </div>
                     </div>
@@ -381,7 +388,7 @@
                             <span class="text-xl font-medium">Can I use it throughout the day?</span>
                             <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
                         </button>
-                        <div class="faq-answer hidden mt-6 text-white/70 text-[17px]">
+                       <div class="faq-answer mt-6 text-white/70 text-[17px]">
                             Absolutely. Open the briefing page or install the PWA anytime for an up-to-date view of what still needs your attention.
                         </div>
                     </div>
@@ -580,12 +587,22 @@
             }
         }
         
-        // FAQ
+       // FAQ — smooth slide
         function toggleFaq(el) {
             const answer = el.parentElement.querySelector('.faq-answer');
-            const hidden = answer.classList.contains('hidden');
-            document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
-            if (hidden) answer.classList.remove('hidden');
+            const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+
+            // Close all
+            document.querySelectorAll('.faq-answer').forEach(a => {
+                a.style.maxHeight = '0px';
+                a.style.opacity = '0';
+            });
+
+            // Open clicked one if it was closed
+            if (!isOpen) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                answer.style.opacity = '1';
+            }
         }
         
         // Modal
