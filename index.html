@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeadStart — Start your day with clarity</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=DM+Sans:wght@400;500;600&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=DM+Sans:wght@400;500;600&amp;display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap');
         
         :root {
             --bg: #0a0a0a;
@@ -24,7 +24,7 @@
         }
         
         body {
-            font-family: 'DM Sans', system_ui, sans-serif;
+            font-family: 'DM Sans', system-ui, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.7;
@@ -32,10 +32,6 @@
         
         .heading-font {
             font-family: 'Playfair Display', serif;
-        }
-        
-        .hero-bg {
-            background: radial-gradient(at center bottom, rgba(201, 166, 107, 0.08) 0%, transparent 50%);
         }
         
         .section-header {
@@ -64,14 +60,6 @@
         
         .feature-card {
             background-color: var(--surface);
-        }
-        
-        .mockup {
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
-            border: 12px solid #1f1f1f;
-            border-radius: 2.5rem;
-            overflow: hidden;
-            background: #111;
         }
         
         .scroll-progress {
@@ -105,6 +93,22 @@
             transform: translateY(-3px);
             box-shadow: 0 20px 25px -5px rgb(201 166 107 / 0.3), 0 8px 10px -6px rgb(201 166 107 / 0.3);
         }
+
+        /* Hero background fixed so parallax works correctly */
+        #hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        #hero-bg img {
+            width: 100%;
+            height: 120%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -112,7 +116,7 @@
     <div id="progress-bar" class="scroll-progress w-0"></div>
 
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-lg border-b border-white/10">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm border-b border-white/5">
         <div class="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
             <div class="flex items-center gap-x-3">
                 <div class="w-7 h-7 bg-[#c9a66b] rounded-2xl flex items-center justify-center text-[#111] text-xl font-bold leading-none pt-0.5">H</div>
@@ -126,125 +130,72 @@
             </div>
             
             <button onclick="showSignupModal()" 
-                    class="px-6 py-3.5 text-sm font-semibold rounded-2xl bg-white/5 hover:bg-white/10 border border-white/20 flex items-center gap-x-2">
+                    class="px-6 py-3.5 text-sm font-semibold rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 flex items-center gap-x-2">
                 <span>Get early access</span>
             </button>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero-bg min-h-screen flex items-center pt-20">
-        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-16 items-center">
-            <!-- Left content -->
-            <div class="md:col-span-7 pt-12 md:pt-0">
-                <div class="inline-flex items-center gap-x-2 bg-white/5 text-white/70 text-xs tracking-[0.125em] font-medium px-5 py-2.5 rounded-3xl mb-8 border border-white/10">
-                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                    NOW ACCEPTING EARLY ACCESS
-                </div>
-                
-                <h1 class="heading-font text-7xl md:text-[92px] leading-[1.05] tracking-tighter font-semibold max-w-[22ch]">
-                    Your inbox,<br>finally tamed.
-                </h1>
-                
-                <p class="mt-8 text-2xl text-white/70 max-w-[28ch] leading-tight">
-                    A 06:55 briefing that surfaces only what matters and ensures you never forget to follow up.
-                </p>
-                
-                <div class="mt-12 flex flex-wrap gap-4">
-                    <button onclick="showSignupModal()" 
-                            class="cta-button px-10 py-6 rounded-3xl text-xl font-semibold flex items-center gap-x-3 group">
-                        Join the waitlist
-                        <span class="inline-block group-active:rotate-45 transition-transform">→</span>
-                    </button>
-                    
-                    <button onclick="document.getElementById('how').scrollIntoView({ behavior: 'smooth' })" 
-                            class="px-8 py-6 rounded-3xl border border-white/30 hover:border-white/60 text-lg font-medium">
-                        See how it works
-                    </button>
-                </div>
-                
-                <div class="mt-16 flex items-center gap-x-8 text-sm">
-                    <div class="flex -space-x-4">
-                        <div class="w-8 h-8 bg-zinc-700 border-2 border-[#0a0a0a] rounded-2xl flex items-center justify-center text-xs">📧</div>
-                        <div class="w-8 h-8 bg-zinc-700 border-2 border-[#0a0a0a] rounded-2xl flex items-center justify-center text-xs">📅</div>
-                    </div>
-                    <div class="text-white/60">
-                        Works with Gmail &amp; Outlook<br>
-                        <span class="text-emerald-400 text-xs">• No inbox changes • Your data stays yours</span>
-                    </div>
-                </div>
+    <!-- HERO — Netflix style: full screen photo, centered text overlay -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+        <!-- Background photo -->
+        <div id="hero-bg">
+            <img 
+                src="photohere.png" 
+                alt="Business professionals at the starting line"
+            >
+            <!-- Bottom-heavy dark gradient so text pops and page transitions smoothly -->
+            <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.2) 30%, rgba(10,10,10,0.55) 70%, rgba(10,10,10,1) 100%);"></div>
+            <!-- Subtle center darkening so headline is always readable -->
+            <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, rgba(10,10,10,0.3) 0%, transparent 70%);"></div>
+        </div>
+
+        <!-- Scroll-fade overlay — fades photo to dark as user scrolls -->
+        <div id="hero-fade" class="absolute inset-0 z-10 pointer-events-none" style="background: #0a0a0a; opacity: 0;"></div>
+
+        <!-- Centered content — Netflix style -->
+        <div class="relative z-20 text-center px-6 max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-x-2 bg-black/30 text-white/80 text-xs tracking-[0.125em] font-medium px-5 py-2.5 rounded-3xl mb-10 border border-white/20 backdrop-blur-sm">
+                <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                NOW ACCEPTING EARLY ACCESS
             </div>
             
-            <!-- Right visual -->
-            <div class="md:col-span-5 relative">
-                <div class="mockup mx-auto max-w-xs md:max-w-md aspect-[9/19] relative">
-                    <!-- Phone screen mock -->
-                    <div class="bg-[#0f172a] h-full p-3 flex flex-col">
-                        <!-- Status bar -->
-                        <div class="flex justify-between text-[10px] text-white/60 px-3 pt-2">
-                            <div>9:41</div>
-                            <div class="flex items-center gap-x-3">
-                                <span>5G</span>
-                                <span>92%</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Briefing header -->
-                        <div class="mt-6 bg-[#1e2937] rounded-3xl p-5 text-sm">
-                            <div class="flex justify-between items-center mb-4">
-                                <div class="font-semibold text-[#c9a66b]">Good morning, Alex</div>
-                                <div class="text-xs px-3 py-1 bg-white/10 rounded-3xl">Today</div>
-                            </div>
-                            
-                            <div class="space-y-6">
-                                <!-- Item -->
-                                <div>
-                                    <div class="flex gap-x-3">
-                                        <div class="text-2xl">📨</div>
-                                        <div class="flex-1">
-                                            <div class="font-medium">Sarah Chen • Proposal feedback</div>
-                                            <div class="text-white/60 text-xs mt-0.5">Action required • Sent 7:12am</div>
-                                            <div class="mt-3 text-xs text-emerald-400 font-medium">✓ Responded</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Item 2 -->
-                                <div>
-                                    <div class="flex gap-x-3">
-                                        <div class="text-2xl">📅</div>
-                                        <div class="flex-1">
-                                            <div class="font-medium">Q3 planning sync</div>
-                                            <div class="text-white/60 text-xs mt-0.5">Meeting • Tomorrow 11am</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-auto text-center text-[10px] text-white/40 py-6">
-                            4 items need attention • 2 resolved
-                        </div>
-                    </div>
-                    
-                    <!-- Shine effect -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none rounded-[2.25rem]"></div>
-                </div>
-                
-                <!-- Floating badge -->
-                <div class="absolute -bottom-4 -left-6 bg-[#111] border border-white/10 rounded-3xl px-6 py-4 shadow-2xl text-sm max-w-[180px]">
-                    <div class="flex items-center gap-x-2">
-                        <span class="text-emerald-400">●</span>
-                        <span class="font-medium">06:55 notification sent</span>
-                    </div>
-                </div>
+            <h1 class="heading-font text-7xl md:text-[96px] leading-[1.02] tracking-tighter font-semibold">
+                Your inbox,<br>finally tamed.
+            </h1>
+            
+            <p class="mt-8 text-xl md:text-2xl text-white/80 max-w-[36ch] mx-auto leading-snug">
+                A 06:55 briefing that surfaces only what matters — and ensures you never forget to follow up.
+            </p>
+
+            <!-- Email CTA — Netflix style -->
+            <div class="mt-10 text-white/70 text-base">Ready to start your mornings differently?</div>
+            <div class="mt-4 flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto">
+                <input 
+                    type="email" 
+                    placeholder="Enter your work email"
+                    id="hero-email"
+                    class="flex-1 bg-white/95 text-gray-900 placeholder-gray-500 px-6 py-5 rounded-2xl text-base outline-none focus:ring-2 focus:ring-[#c9a66b]"
+                >
+                <button 
+                    onclick="handleHeroCTA()"
+                    class="cta-button px-8 py-5 rounded-2xl text-base font-semibold whitespace-nowrap flex items-center gap-x-2">
+                    Get Started →
+                </button>
+            </div>
+
+            <div class="mt-6 flex items-center justify-center gap-x-6 text-sm text-white/50">
+                <span>✓ Works with Gmail & Outlook</span>
+                <span>✓ No inbox changes</span>
+                <span>✓ Free early access</span>
             </div>
         </div>
         
         <!-- Scroll indicator -->
-        <div class="absolute bottom-12 left-1/2 hidden md:flex flex-col items-center gap-y-2">
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-y-2">
             <div class="text-xs tracking-widest text-white/40">SCROLL TO EXPLORE</div>
-            <div class="w-px h-12 bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
+            <div class="w-px h-10 bg-gradient-to-b from-white/40 to-transparent animate-pulse"></div>
         </div>
     </section>
 
@@ -260,17 +211,15 @@
                 <div class="md:col-span-7 mt-10 md:mt-0">
                     <div class="space-y-16">
                         <div class="grid md:grid-cols-2 gap-16">
-                            <!-- Pain 1 -->
                             <div class="fade-in">
                                 <div class="text-7xl mb-6 text-white/20">01</div>
                                 <div class="text-3xl heading-font leading-tight">The stolen first hour</div>
                                 <p class="mt-6 text-lg text-white/70">
                                     Every morning begins with 30–60 minutes of inbox triage before real work can start. 
-                                    That’s valuable focus time lost to noise.
+                                    That's valuable focus time lost to noise.
                                 </p>
                             </div>
                             
-                            <!-- Pain 2 -->
                             <div class="fade-in">
                                 <div class="text-7xl mb-6 text-white/20">02</div>
                                 <div class="text-3xl heading-font leading-tight">Forgotten follow-ups</div>
@@ -283,7 +232,7 @@
                         
                         <div class="border-l border-white/10 pl-8 max-w-md">
                             <p class="italic text-white/60">
-                                “By Thursday I’ve usually dropped at least three things I meant to follow up on.”
+                                "By Thursday I've usually dropped at least three things I meant to follow up on."
                             </p>
                             <p class="text-xs text-white/40 mt-6">— Typical SMB founder</p>
                         </div>
@@ -293,7 +242,7 @@
         </div>
     </section>
 
-    <!-- WHAT HEADSTART DOES -->
+    <!-- HOW IT WORKS -->
     <section id="how" class="py-28 bg-[#111111]">
         <div class="max-w-screen-2xl mx-auto px-8">
             <div class="max-w-2xl mx-auto text-center mb-20">
@@ -302,30 +251,27 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
                 <div class="feature-card p-10 rounded-3xl fade-in group">
-                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110">📬</div>
+                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110 transition-transform">📬</div>
                     <h3 class="text-2xl font-semibold mb-3">Cuts through the noise</h3>
                     <p class="text-white/70">
                         Filters out newsletters, promotions, and automated messages. Only shows emails that require your attention.
                     </p>
                 </div>
                 
-                <!-- Card 2 -->
                 <div class="feature-card p-10 rounded-3xl fade-in group">
-                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110">✅</div>
+                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110 transition-transform">✅</div>
                     <h3 class="text-2xl font-semibold mb-3">Tracks follow-through</h3>
                     <p class="text-white/70">
-                        Automatically checks your Sent and Drafts folders. Clearly shows what’s pending, started, or resolved.
+                        Automatically checks your Sent and Drafts folders. Clearly shows what's pending, started, or resolved.
                     </p>
                 </div>
                 
-                <!-- Card 3 -->
                 <div class="feature-card p-10 rounded-3xl fade-in group">
-                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110">🌅</div>
+                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110 transition-transform">🌅</div>
                     <h3 class="text-2xl font-semibold mb-3">Self-healing system</h3>
                     <p class="text-white/70">
-                        Unresolved items automatically roll into tomorrow’s briefing. Works even when life gets busy.
+                        Unresolved items automatically roll into tomorrow's briefing. Works even when life gets busy.
                     </p>
                 </div>
             </div>
@@ -350,14 +296,14 @@
         </div>
     </section>
 
-    <!-- TESTIMONIAL STYLE TRUST BAR -->
+    <!-- TRUST BAR -->
     <div class="py-12 border-t border-b border-white/5 bg-black/30">
         <div class="max-w-screen-2xl mx-auto px-8 flex flex-wrap justify-center items-center gap-x-16 gap-y-8 opacity-75 text-sm">
-            <div class="flex items-center gap-x-6">
+            <div class="flex items-center gap-x-3">
                 <span class="font-mono text-3xl text-white/30">G</span>
                 <span class="font-medium">Gmail</span>
             </div>
-            <div class="flex items-center gap-x-6">
+            <div class="flex items-center gap-x-3">
                 <span class="font-mono text-3xl text-white/30">O</span>
                 <span class="font-medium">Outlook</span>
             </div>
@@ -373,12 +319,10 @@
             <p class="mt-8 text-xl text-white/70">
                 Be among the first to try HeadStart. Limited early access spots available.
             </p>
-            
             <button onclick="showSignupModal()" 
                     class="mt-12 cta-button px-16 py-8 text-2xl rounded-3xl inline-flex items-center gap-x-4">
                 Get Early Access — It's Free
             </button>
-            
             <p class="text-xs text-white/40 mt-8">Takes 15 seconds • No credit card required</p>
         </div>
     </section>
@@ -419,7 +363,7 @@
                             <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
                         </button>
                         <div class="faq-answer hidden mt-6 text-white/70 text-[17px]">
-                            Yesterday’s unresolved items will automatically appear in tomorrow’s briefing. The system is designed to be forgiving.
+                            Yesterday's unresolved items will automatically appear in tomorrow's briefing. The system is designed to be forgiving.
                         </div>
                     </div>
                     
@@ -447,34 +391,32 @@
         </div>
     </section>
 
-<!-- ABOUT -->
-<section class="py-28 bg-[#111]">
-    <div class="max-w-screen-2xl mx-auto px-8">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <!-- Left: text -->
-            <div>
-                <div class="uppercase text-xs tracking-widest mb-6 text-amber-300">THE STORY BEHIND HEADSTART</div>
-                <h2 class="heading-font text-6xl leading-tight">Built for busy SMB operators who are tired of email chaos.</h2>
-                <div class="prose prose-invert mt-10 text-lg">
-                    <p>HeadStart was created by the team at SMB-Integrator after watching founders and operators lose hours every week to fragmented inboxes and dropped replies.</p>
-                    <p>We believe your morning should begin with clarity, not overwhelm. And that follow-through shouldn't depend on perfect memory.</p>
+    <!-- ABOUT -->
+    <section class="py-28 bg-[#111]">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="uppercase text-xs tracking-widest mb-6 text-amber-300">THE STORY BEHIND HEADSTART</div>
+                    <h2 class="heading-font text-6xl leading-tight">Built for busy SMB operators who are tired of email chaos.</h2>
+                    <div class="mt-10 text-lg text-white/70 space-y-4">
+                        <p>HeadStart was created by the team at SMB-Integrator after watching founders and operators lose hours every week to fragmented inboxes and dropped replies.</p>
+                        <p>We believe your morning should begin with clarity, not overwhelm. And that follow-through shouldn't depend on perfect memory.</p>
+                    </div>
+                    <div class="mt-12 flex items-center gap-x-4">
+                        <div class="w-12 h-px bg-white/30"></div>
+                        <div class="text-sm uppercase tracking-widest">Coming soon to more channels</div>
+                    </div>
                 </div>
-                <div class="mt-12 flex items-center gap-x-4">
-                    <div class="w-12 h-px bg-white/30"></div>
-                    <div class="text-sm uppercase tracking-widest">Coming soon to more channels</div>
+                <div class="rounded-3xl overflow-hidden h-[480px]">
+                    <img 
+                        src="photohere.png" 
+                        alt="Business professionals ready to start" 
+                        class="w-full h-full object-cover object-center"
+                    >
                 </div>
-            </div>
-            <!-- Right: image -->
-            <div class="rounded-3xl overflow-hidden h-[480px]">
-                <img 
-                    src="photohere.png" 
-                    alt="Business professionals ready to start" 
-                    class="w-full h-full object-cover object-center"
-                >
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- FINAL CTA -->
     <section class="py-24 border-t border-white/10">
@@ -496,9 +438,7 @@
                         <div class="w-7 h-7 bg-[#c9a66b] rounded-2xl flex items-center justify-center text-[#111] text-2xl font-bold leading-none">H</div>
                         <span class="heading-font text-4xl tracking-tighter">HeadStart</span>
                     </div>
-                    <p class="text-white/40 mt-6 text-sm max-w-xs">
-                        Morning clarity for SMB teams.
-                    </p>
+                    <p class="text-white/40 mt-6 text-sm max-w-xs">Morning clarity for SMB teams.</p>
                 </div>
                 
                 <div class="grid grid-cols-3 gap-x-16 text-sm">
@@ -537,7 +477,7 @@
     </footer>
 
     <!-- SIGNUP MODAL -->
-    <div id="signup-modal" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-[9999]">
+    <div id="signup-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-[9999]">
         <div onclick="event.stopImmediatePropagation()" 
              class="bg-[#111] max-w-md w-full mx-4 rounded-3xl p-10 relative">
             
@@ -554,7 +494,7 @@
                 <div>
                     <label class="block text-xs uppercase tracking-widest mb-2 text-white/60">Work email</label>
                     <input id="email" type="email" required 
-                           class="w-full bg-white/5 border border-white/20 focus:border-[#c9a66b] rounded-2xl px-6 py-6 outline-none text-lg"
+                           class="w-full bg-white/5 border border-white/20 focus:border-[#c9a66b] rounded-2xl px-6 py-5 outline-none text-lg"
                            placeholder="you@company.com">
                 </div>
                 
@@ -562,18 +502,17 @@
                     <div>
                         <label class="block text-xs uppercase tracking-widest mb-2 text-white/60">First name</label>
                         <input id="first-name" type="text" 
-                               class="w-full bg-white/5 border border-white/20 focus:border-[#c9a66b] rounded-2xl px-6 py-6 outline-none">
+                               class="w-full bg-white/5 border border-white/20 focus:border-[#c9a66b] rounded-2xl px-6 py-5 outline-none">
                     </div>
                     <div>
                         <label class="block text-xs uppercase tracking-widest mb-2 text-white/60">Company</label>
                         <input id="company" type="text" 
-                               class="w-full bg-white/5 border border-white/20 focus:border-[#c9a66b] rounded-2xl px-6 py-6 outline-none">
+                               class="w-full bg-white/5 border border-white/20 focus:border-[#c9a66b] rounded-2xl px-6 py-5 outline-none">
                     </div>
                 </div>
                 
-                <div class="pt-4">
-                    <button type="submit"
-                            class="w-full cta-button py-7 text-xl rounded-3xl">
+                <div class="pt-2">
+                    <button type="submit" class="w-full cta-button py-6 text-xl rounded-3xl">
                         Yes, I'm in
                     </button>
                 </div>
@@ -583,77 +522,85 @@
                 </p>
             </form>
             
-            <!-- Success state -->
             <div id="success-state" class="hidden text-center py-8">
                 <div class="text-6xl mb-6">🎉</div>
                 <h3 class="heading-font text-3xl">You're on the list!</h3>
                 <p class="mt-4 text-white/70">We'll notify you as soon as HeadStart is ready for you.</p>
-                <button onclick="hideSignupModal()" 
-                        class="mt-8 text-sm underline">Close</button>
+                <button onclick="hideSignupModal()" class="mt-8 text-sm underline">Close</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Tailwind script already included via CDN for rapid prototyping, but kept pure where needed
-        
         // Progress bar
         function setupProgressBar() {
             const progressBar = document.getElementById('progress-bar');
-            
             window.addEventListener('scroll', () => {
                 const scrollTop = window.scrollY;
                 const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrollPercent = scrollTop / docHeight * 100;
-                progressBar.style.width = `${scrollPercent}%`;
-            });
+                progressBar.style.width = `${(scrollTop / docHeight) * 100}%`;
+            }, { passive: true });
+        }
+
+        // Parallax + fade hero photo on scroll
+        function setupHeroParallax() {
+            const heroBgImg = document.querySelector('#hero-bg img');
+            const heroFade  = document.getElementById('hero-fade');
+            const heroSection = document.querySelector('section');
+
+            window.addEventListener('scroll', () => {
+                const scrollY   = window.scrollY;
+                const heroH     = heroSection ? heroSection.offsetHeight : window.innerHeight;
+
+                // Parallax: image drifts up at 30% scroll speed
+                if (heroBgImg) {
+                    heroBgImg.style.transform = `translateY(${scrollY * 0.3}px)`;
+                }
+
+                // Fade to black by 65% of hero height
+                if (heroFade) {
+                    heroFade.style.opacity = Math.min(scrollY / (heroH * 0.65), 1);
+                }
+            }, { passive: true });
         }
         
-        // Fade in animations
+        // Fade-in on scroll
         function setupAnimations() {
             const faders = document.querySelectorAll('.fade-in');
-            
-            const appearOptions = {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
-            
-            const appearOnScroll = new IntersectionObserver((entries) => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
                 });
-            }, appearOptions);
-            
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
-            });
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+            faders.forEach(f => observer.observe(f));
         }
-        
-        // FAQ toggles
-        function toggleFaq(el) {
-            const answer = el.parentElement.querySelector('.faq-answer');
-            const isHidden = answer.classList.contains('hidden');
-            
-            // Close all others
-            document.querySelectorAll('.faq-answer').forEach(ans => {
-                if (ans !== answer) ans.classList.add('hidden');
-            });
-            
-            if (isHidden) {
-                answer.classList.remove('hidden');
-            } else {
-                answer.classList.add('hidden');
+
+        // Hero email CTA — pre-fills modal
+        function handleHeroCTA() {
+            const emailVal = document.getElementById('hero-email').value;
+            showSignupModal();
+            if (emailVal) {
+                setTimeout(() => {
+                    document.getElementById('email').value = emailVal;
+                }, 50);
             }
         }
         
-        // Modal controls
-        let modalOpen = false;
+        // FAQ
+        function toggleFaq(el) {
+            const answer  = el.parentElement.querySelector('.faq-answer');
+            const hidden  = answer.classList.contains('hidden');
+            document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+            if (hidden) answer.classList.remove('hidden');
+        }
         
+        // Modal
+        let modalOpen = false;
+
         function showSignupModal() {
-            document.getElementById('signup-modal').classList.remove('hidden');
-            document.getElementById('signup-modal').classList.add('flex');
+            const modal = document.getElementById('signup-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
             document.getElementById('email').focus();
             modalOpen = true;
         }
@@ -662,67 +609,35 @@
             const modal = document.getElementById('signup-modal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
-            
-            // Reset form
             setTimeout(() => {
                 document.getElementById('signup-form').classList.remove('hidden');
                 document.getElementById('success-state').classList.add('hidden');
             }, 300);
-            
             modalOpen = false;
         }
         
         function handleSubmit(e) {
             e.preventDefault();
-            
-            const form = document.getElementById('signup-form');
-            const success = document.getElementById('success-state');
-            
-            form.classList.add('hidden');
-            success.classList.remove('hidden');
-            
-            // Fake submission - in real app would POST to backend
-            console.log('%cEarly access signup captured!', 'color:#c9a66b; font-size:13px');
+            document.getElementById('signup-form').classList.add('hidden');
+            document.getElementById('success-state').classList.remove('hidden');
         }
+
+        // Keyboard + outside click
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOpen) hideSignupModal(); });
+        document.getElementById('signup-modal').addEventListener('click', e => {
+            if (e.target === document.getElementById('signup-modal')) hideSignupModal();
+        });
         
-        // Keyboard escape
-        function setupKeyboard() {
-            document.addEventListener('keydown', function(e) {
-                if (e.key === "Escape" && modalOpen) {
-                    hideSignupModal();
-                }
-            });
-        }
-        
-        // Click outside modal to close
-        function setupModalClick() {
-            const modal = document.getElementById('signup-modal');
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    hideSignupModal();
-                }
-            });
-        }
-        
-        // Initialize everything
-        function initialize() {
+        // Init
+        window.onload = function() {
             setupProgressBar();
+            setupHeroParallax();
             setupAnimations();
-            setupKeyboard();
-            setupModalClick();
-            
-            // Make first FAQ open by default
             setTimeout(() => {
-                const firstFaqBtn = document.querySelector('.faq-item button');
-                if (firstFaqBtn) {
-                    firstFaqBtn.click();
-                }
+                const first = document.querySelector('.faq-item button');
+                if (first) first.click();
             }, 1200);
-            
-            console.log('%cHeadStart landing page initialized successfully ✨', 'color:#c9a66b; font-family:monospace');
-        }
-        
-        window.onload = initialize;
+        };
     </script>
 </body>
 </html>
