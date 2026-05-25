@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeadStart — Start your day with clarity</title>
+    <title>HeadStart — Get ahead. Stay ahead.</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap">
     <style>
@@ -165,15 +165,18 @@
 
         <!-- Centered content — fades in after 2 seconds -->
         <div id="hero-content" class="relative z-20 text-center px-6 max-w-4xl mx-auto mt-48 md:mt-64" style="opacity: 0; transition: opacity 3s ease;">
-            <h1 class="heading-font text-7xl md:text-[96px] leading-[1.02] tracking-tighter font-semibold">
-                Your inbox,<br>finally tamed.
+            <h1 class="heading-font text-6xl md:text-[82px] leading-[1.05] tracking-tighter font-semibold">
+                You're not behind<br>because you're lazy.
             </h1>
-            
-            <p class="mt-8 text-xl md:text-2xl text-white/80 max-w-[36ch] mx-auto leading-snug">
-                A 06:55 briefing that surfaces only what matters — and ensures you never forget to follow up.
+            <p class="mt-4 heading-font text-3xl md:text-4xl text-white/60 italic">
+                You're behind because no one was built<br class="hidden md:block"> to handle this much.
             </p>
 
-            <div class="mt-10 text-white/70 text-base">Ready to start your mornings differently?</div>
+            <p class="mt-10 text-xl md:text-2xl text-white/75 max-w-[32ch] mx-auto leading-snug">
+                HeadStart gives you back the clarity to lead — not just keep up.
+            </p>
+
+            <div class="mt-10 text-white/60 text-base">Ready to feel in control again?</div>
             <div class="mt-4 flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto">
                 <input 
                     type="email" 
@@ -181,12 +184,12 @@
                     id="hero-email"
                     class="flex-1 bg-white/95 text-gray-900 placeholder-gray-500 px-6 py-5 rounded-2xl text-base outline-none focus:ring-2 focus:ring-[#c9a66b]"
                 >
-                <button onclick="handleHeroCTA()" class="cta-button px-8 py-5 rounded-2xl text-base font-semibold whitespace-nowrap flex items-center gap-x-2">
-                    Get Started →
+                <button onclick="handleHeroCTA()" class="cta-button px-8 py-5 rounded-2xl text-base font-semibold whitespace-nowrap">
+                    I'm ready to get ahead →
                 </button>
             </div>
 
-            <div class="mt-6 flex items-center justify-center gap-x-6 text-sm text-white/50">
+            <div class="mt-6 flex items-center justify-center gap-x-6 text-sm text-white/40">
                 <span>✓ Works with Gmail & Outlook</span>
                 <span>✓ No inbox changes</span>
                 <span>✓ Free early access</span>
@@ -203,10 +206,10 @@
     <!-- PROBLEM -->
     <section id="problem" class="py-28 border-t border-white/5">
         <div class="max-w-screen-2xl mx-auto px-8">
-            <div class="grid md:grid-cols-12 gap-x-20 items-center">
+            <div class="grid md:grid-cols-12 gap-x-20 items-start">
                 <div class="md:col-span-5">
-                    <span class="inline-block uppercase text-xs tracking-[1.5px] text-amber-300 mb-3">THE DAILY COST</span>
-                    <h2 class="heading-font section-header">Your inbox is quietly stealing your day.</h2>
+                    <span class="inline-block uppercase text-xs tracking-[1.5px] text-amber-300 mb-3">THE REAL COST</span>
+                    <h2 class="heading-font section-header leading-tight">The cost isn't missed emails.<br><br>It's who you become when you're always catching up.</h2>
                 </div>
                 
                 <div class="md:col-span-7 mt-10 md:mt-0">
@@ -214,27 +217,26 @@
                         <div class="grid md:grid-cols-2 gap-16">
                             <div class="fade-in">
                                 <div class="text-7xl mb-6 text-white/20">01</div>
-                                <div class="text-3xl heading-font leading-tight">The stolen first hour</div>
+                                <div class="text-3xl heading-font leading-tight">You start every day already behind</div>
                                 <p class="mt-6 text-lg text-white/70">
-                                    Every morning begins with 30–60 minutes of inbox triage before real work can start. 
-                                    That's valuable focus time lost to noise.
+                                    Before your first coffee, there are 47 things demanding your attention. You respond to the loudest — and quietly drop everything else.
                                 </p>
                             </div>
+                            
                             <div class="fade-in">
                                 <div class="text-7xl mb-6 text-white/20">02</div>
-                                <div class="text-3xl heading-font leading-tight">Forgotten follow-ups</div>
+                                <div class="text-3xl heading-font leading-tight">The best version of you never shows up</div>
                                 <p class="mt-6 text-lg text-white/70">
-                                    You read an important email, intend to reply later, and it slips through the cracks. 
-                                    Relationships and opportunities suffer.
+                                    You know what great leadership looks like. But you can't get there when you're buried in follow-ups you swore you'd remember.
                                 </p>
                             </div>
                         </div>
                         
                         <div class="border-l border-white/10 pl-8 max-w-md">
-                            <p class="italic text-white/60">
-                                "By Thursday I've usually dropped at least three things I meant to follow up on."
+                            <p class="italic text-white/60 text-lg">
+                                "I'm not bad at my job. I'm just overwhelmed by the noise around it."
                             </p>
-                            <p class="text-xs text-white/40 mt-6">— Typical SMB founder</p>
+                            <p class="text-xs text-white/40 mt-6">— Typical founder, 9am on a Tuesday</p>
                         </div>
                     </div>
                 </div>
@@ -245,43 +247,43 @@
     <!-- HOW IT WORKS -->
     <section id="how" class="py-28 bg-[#111111]">
         <div class="max-w-screen-2xl mx-auto px-8">
-            <div class="max-w-2xl mx-auto text-center mb-20">
-                <span class="px-5 py-2 rounded-full bg-white/5 text-xs font-medium tracking-wider">SIMPLE BY DESIGN</span>
-                <h2 class="heading-font section-header mt-6">One daily briefing.<br>Zero forgotten replies.</h2>
+            <div class="max-w-3xl mx-auto text-center mb-20">
+                <span class="px-5 py-2 rounded-full bg-white/5 text-xs font-medium tracking-wider">THE TRANSFORMATION</span>
+                <h2 class="heading-font section-header mt-6">This is what it feels like to have a second brain<br>that never sleeps.</h2>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="feature-card p-10 rounded-3xl fade-in group">
-                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110 transition-transform">📬</div>
-                    <h3 class="text-2xl font-semibold mb-3">Cuts through the noise</h3>
-                    <p class="text-white/70">Filters out newsletters, promotions, and automated messages. Only shows emails that require your attention.</p>
+                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110 transition-transform">🧠</div>
+                    <h3 class="text-2xl font-semibold mb-3">Nothing slips</h3>
+                    <p class="text-white/70">
+                        Every email, every thread, every "I'll follow up on that" — captured, tracked, and waiting for you. The mental weight lifts the moment you trust something else to hold it.
+                    </p>
                 </div>
+                
                 <div class="feature-card p-10 rounded-3xl fade-in group">
-                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110 transition-transform">✅</div>
-                    <h3 class="text-2xl font-semibold mb-3">Tracks follow-through</h3>
-                    <p class="text-white/70">Automatically checks your Sent and Drafts folders. Clearly shows what's pending, started, or resolved.</p>
+                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110 transition-transform">🏆</div>
+                    <h3 class="text-2xl font-semibold mb-3">You become the most reliable person in the room</h3>
+                    <p class="text-white/70">
+                        Not because you work harder. Because HeadStart works while you sleep — so you always show up prepared, remembered, and ahead.
+                    </p>
                 </div>
+                
                 <div class="feature-card p-10 rounded-3xl fade-in group">
-                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110 transition-transform">🌅</div>
-                    <h3 class="text-2xl font-semibold mb-3">Self-healing system</h3>
-                    <p class="text-white/70">Unresolved items automatically roll into tomorrow's briefing. Works even when life gets busy.</p>
+                    <div class="h-14 w-14 bg-white/10 flex items-center justify-center rounded-2xl text-4xl mb-8 group-hover:scale-110 transition-transform">🧭</div>
+                    <h3 class="text-2xl font-semibold mb-3">From reactive to proactive — permanently</h3>
+                    <p class="text-white/70">
+                        Stop responding to your day. Start owning it. HeadStart shifts you from survival mode to strategic mode — every single morning.
+                    </p>
                 </div>
             </div>
             
-            <div class="mt-20 bg-[#1a1a1a] border border-white/10 rounded-3xl p-12 md:p-16 max-w-3xl mx-auto">
-                <div class="flex flex-col md:flex-row gap-12 items-center">
-                    <div>
-                        <div class="uppercase text-xs tracking-widest mb-2">Every morning at 06:55</div>
-                        <div class="text-5xl heading-font leading-none">A single push notification</div>
-                        <p class="mt-8 text-white/70 max-w-xs">One tap opens your personalized briefing. Available on-demand anytime after.</p>
-                    </div>
-                    <div class="flex-1 flex justify-center">
-                        <div class="text-center bg-black/40 px-10 py-8 rounded-3xl">
-                            <div class="text-8xl mb-3">📱</div>
-                            <div class="text-emerald-400 font-medium">06:55</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="mt-20 bg-[#1a1a1a] border border-white/10 rounded-3xl p-12 md:p-16 max-w-3xl mx-auto text-center">
+                <div class="text-5xl mb-6">06:55</div>
+                <div class="heading-font text-4xl leading-tight">Every morning, before the chaos starts,<br>HeadStart is already working.</div>
+                <p class="mt-8 text-white/60 max-w-lg mx-auto">
+                    A single briefing. Everything that matters. Nothing you don't need. One tap and you're already ahead of the room.
+                </p>
             </div>
         </div>
     </section>
@@ -306,7 +308,7 @@
     <section class="py-28 bg-[#0a0a0a]">
         <div class="max-w-screen-2xl mx-auto px-8">
             <div class="text-center mb-16">
-                <span class="px-5 py-2 rounded-full bg-white/5 text-xs font-medium tracking-wider">BY THE NUMBERS</span>
+                <span class="px-5 py-2 rounded-full bg-white/5 text-xs font-medium tracking-wider">WHAT CALM ACTUALLY LOOKS LIKE</span>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
                 <div class="stat-item">
@@ -340,10 +342,17 @@
     <!-- CTA SECTION -->
     <section class="py-32 bg-gradient-to-b from-transparent via-[#c9a66b]/5 to-transparent">
         <div class="max-w-2xl mx-auto text-center px-6">
-            <h2 class="heading-font text-6xl leading-none tracking-tighter">Ready to stop losing hours to email?</h2>
-            <p class="mt-8 text-xl text-white/70">Be among the first to try HeadStart. Limited early access spots available.</p>
-            <button onclick="showSignupModal()" class="mt-12 cta-button px-16 py-8 text-2xl rounded-3xl inline-flex items-center gap-x-4">
-                Get Early Access — It's Free
+            <p class="text-white/50 uppercase text-xs tracking-widest mb-6">Your move</p>
+            <h2 class="heading-font text-5xl md:text-6xl leading-tight tracking-tighter">
+                Most people will keep<br>drowning in their inbox.
+            </h2>
+            <p class="mt-6 text-2xl text-[#c9a66b] heading-font italic">You don't have to.</p>
+            <p class="mt-8 text-lg text-white/60 max-w-md mx-auto">
+                Limited early access spots available. Be among the first to lead your day — instead of surviving it.
+            </p>
+            <button onclick="showSignupModal()" 
+                    class="mt-12 cta-button px-16 py-8 text-xl rounded-3xl inline-flex items-center gap-x-4">
+                I'm ready to get ahead
             </button>
             <p class="text-xs text-white/40 mt-8">Takes 15 seconds • No credit card required</p>
         </div>
@@ -374,16 +383,16 @@
                             <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
                         </button>
                         <div class="faq-answer mt-6 text-white/70 text-[17px]">
-                            No. HeadStart is a read-only view. Your actual inbox remains completely untouched.
+                            No. HeadStart is a read-only view. Your actual inbox remains completely untouched. Think of it as a lens, not a filter.
                         </div>
                     </div>
                     <div class="faq-item border-b border-white/10 pb-8">
                         <button onclick="toggleFaq(this)" class="flex justify-between items-center w-full text-left group">
-                            <span class="text-xl font-medium">What happens if I miss the morning notification?</span>
+                            <span class="text-xl font-medium">What happens if I miss the morning briefing?</span>
                             <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
                         </button>
                         <div class="faq-answer mt-6 text-white/70 text-[17px]">
-                            Yesterday's unresolved items will automatically appear in tomorrow's briefing. The system is designed to be forgiving.
+                            Nothing falls through the cracks. Unresolved items roll forward automatically — so even on your worst days, HeadStart has your back.
                         </div>
                     </div>
                     <div class="faq-item border-b border-white/10 pb-8">
@@ -392,7 +401,7 @@
                             <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
                         </button>
                         <div class="faq-answer mt-6 text-white/70 text-[17px]">
-                            Yes. We use secure OAuth connections with your email provider and are built with the future ability to run on your own infrastructure.
+                            Yes. We use secure OAuth connections with your email provider. Your data is never sold, shared, or used to train models.
                         </div>
                     </div>
                     <div class="faq-item border-b border-white/10 pb-8">
@@ -401,7 +410,7 @@
                             <span class="text-3xl text-white/30 group-hover:text-white/70">+</span>
                         </button>
                         <div class="faq-answer mt-6 text-white/70 text-[17px]">
-                            Absolutely. Open the briefing page or install the PWA anytime for an up-to-date view of what still needs your attention.
+                            Absolutely. The briefing is available on-demand anytime — not just at 06:55. Open it whenever you need to re-center and refocus.
                         </div>
                     </div>
                 </div>
@@ -412,15 +421,16 @@
     <!-- ABOUT -->
     <section class="py-28 bg-[#111]">
         <div class="max-w-3xl mx-auto px-8 text-center">
-            <div class="uppercase text-xs tracking-widest mb-6 text-amber-300">THE STORY BEHIND HEADSTART</div>
-            <h2 class="heading-font text-6xl leading-tight">Built for busy SMB operators who are tired of email chaos.</h2>
-            <div class="mt-10 text-lg text-white/70 space-y-4">
-                <p>HeadStart was created by the team at SMB-Integrator after watching founders and operators lose hours every week to fragmented inboxes and dropped replies.</p>
-                <p>We believe your morning should begin with clarity, not overwhelm. And that follow-through shouldn't depend on perfect memory.</p>
+            <div class="uppercase text-xs tracking-widest mb-6 text-amber-300">WHY WE BUILT THIS</div>
+            <h2 class="heading-font text-5xl md:text-6xl leading-tight">HeadStart wasn't built to make you more productive.</h2>
+            <div class="mt-8 text-xl text-white/60 space-y-4 leading-relaxed">
+                <p>It was built to make you feel like yourself again —</p>
+                <p class="text-white/80 heading-font text-2xl italic">clear-headed, reliable, and always one step ahead.</p>
+                <p class="mt-6">The team at SMB-Integrator watched too many brilliant founders and operators lose their edge — not from lack of talent, but from sheer overwhelm. HeadStart is the answer we wished we had.</p>
             </div>
             <div class="mt-12 flex items-center justify-center gap-x-4">
                 <div class="w-12 h-px bg-white/30"></div>
-                <div class="text-sm uppercase tracking-widest">Coming soon to more channels</div>
+                <div class="text-sm uppercase tracking-widest text-white/40">Coming soon to more channels</div>
                 <div class="w-12 h-px bg-white/30"></div>
             </div>
         </div>
@@ -430,7 +440,8 @@
     <section class="py-24 border-t border-white/10">
         <div class="max-w-2xl mx-auto px-6 text-center">
             <p class="text-3xl font-light">Stop starting your day in catch-up mode.</p>
-            <button onclick="showSignupModal()" class="mt-10 cta-button w-full md:w-auto px-20 py-8 text-2xl rounded-3xl">
+            <p class="mt-3 text-white/50">Become the person who always remembers — especially when everyone else forgets.</p>
+            <button onclick="showSignupModal()" class="mt-10 cta-button w-full md:w-auto px-20 py-8 text-xl rounded-3xl">
                 Claim your early access
             </button>
         </div>
@@ -445,7 +456,7 @@
                         <div class="w-7 h-7 bg-[#c9a66b] rounded-2xl flex items-center justify-center text-[#111] text-2xl font-bold leading-none">H</div>
                         <span class="heading-font text-4xl tracking-tighter">HeadStart</span>
                     </div>
-                    <p class="text-white/40 mt-6 text-sm max-w-xs">Morning clarity for SMB teams.</p>
+                    <p class="text-white/40 mt-6 text-sm max-w-xs">Get ahead. Stay ahead.</p>
                 </div>
                 <div class="grid grid-cols-3 gap-x-16 text-sm">
                     <div>
@@ -487,8 +498,8 @@
             <button onclick="hideSignupModal()" class="absolute top-6 right-6 text-white/40 hover:text-white text-3xl leading-none">×</button>
             <div class="text-center">
                 <div class="mx-auto w-16 h-16 bg-gradient-to-br from-amber-300 to-yellow-600 rounded-3xl flex items-center justify-center text-4xl mb-6">🌅</div>
-                <h3 class="heading-font text-4xl">Join the early access list</h3>
-                <p class="mt-3 text-white/70">Be the first to experience calmer mornings.</p>
+                <h3 class="heading-font text-4xl">Get ahead of the chaos.</h3>
+                <p class="mt-3 text-white/70">Join the waitlist. Be the first to lead your day.</p>
             </div>
             <form id="signup-form" onsubmit="handleSubmit(event)" class="mt-10 space-y-6">
                 <div>
@@ -508,14 +519,14 @@
                     </div>
                 </div>
                 <div class="pt-2">
-                    <button type="submit" class="w-full cta-button py-6 text-xl rounded-3xl">Yes, I'm in</button>
+                    <button type="submit" class="w-full cta-button py-6 text-xl rounded-3xl">Yes, I'm ready</button>
                 </div>
-                <p class="text-center text-xs text-white/40">We respect your inbox. You can unsubscribe anytime.</p>
+                <p class="text-center text-xs text-white/40">No spam. No noise. Just your HeadStart.</p>
             </form>
             <div id="success-state" class="hidden text-center py-8">
                 <div class="text-6xl mb-6">🎉</div>
-                <h3 class="heading-font text-3xl">You're on the list!</h3>
-                <p class="mt-4 text-white/70">We'll notify you as soon as HeadStart is ready for you.</p>
+                <h3 class="heading-font text-3xl">You're on the list.</h3>
+                <p class="mt-4 text-white/70">We'll reach out as soon as your spot is ready. You're already ahead.</p>
                 <button onclick="hideSignupModal()" class="mt-8 text-sm underline">Close</button>
             </div>
         </div>
